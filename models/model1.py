@@ -1,4 +1,4 @@
-from mongoengine import StringField, DictField, Document, ReferenceField, IntField, DateTimeField
+from mongoengine import StringField, Document, ReferenceField, IntField, DateTimeField
 from enum import Enum
 
 

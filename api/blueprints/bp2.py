@@ -3,11 +3,12 @@ from http import HTTPStatus
 from flask import Blueprint, request, abort
 from logger.logger import LoggerHelper
 
-#from helpers.authorization import require_role, Roles
+# from helpers.authorization import require_role, Roles
 
 BLUEPRINT_NAME = "bp2"
 bp2 = Blueprint(BLUEPRINT_NAME, __name__)
 LOGGER = LoggerHelper.get_logger(name=BLUEPRINT_NAME, filename=BLUEPRINT_NAME+".log")
+
 
 @bp2.route("/")
 def get_home():
@@ -18,7 +19,8 @@ def get_home():
     """
     return "GET Inside blueprint2"
 
-#@require_role(Roles.VNO)
+
+# @require_role(Roles.VNO)
 @bp2.route("/", methods=['POST'])
 def post_home():
     """

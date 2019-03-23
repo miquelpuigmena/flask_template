@@ -1,5 +1,6 @@
-from mongoengine import StringField, DictField, Document, ReferenceField, IntField, DateTimeField
+from mongoengine import StringField, Document, ReferenceField
 from models.model1 import Model1
+
 
 class Model2(Document):
     """
@@ -8,4 +9,3 @@ class Model2(Document):
     model1 = ReferenceField(Model1, required=True)
     param = StringField(required=False)
     model2_id = StringField(required=True)
-

@@ -1,6 +1,7 @@
 import logging
 import configparser
 
+
 class LoggerHelper(object):
 
     @staticmethod
@@ -25,5 +26,4 @@ class LoggerHelper(object):
         logger.setLevel(CONFIG.get('logging', 'level'))
         logger.addHandler(handler)
         logger.addHandler(allHandler)
-
         return logger
