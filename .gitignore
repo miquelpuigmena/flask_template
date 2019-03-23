@@ -2,4 +2,6 @@ app.egg-info/
 build/
 dist/
 venv-flask-app/
-.idea*/
+.idea/
+logs/*
+!logs/.gitkeep
