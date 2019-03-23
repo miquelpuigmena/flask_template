@@ -5,3 +5,4 @@ venv-flask-app/
 .idea/
 logs/*
 !logs/.gitkeep
+*.pyc
