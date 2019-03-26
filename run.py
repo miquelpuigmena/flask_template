@@ -1,8 +1,10 @@
 import configparser
 from flask import Flask
 from mongoengine import connect
-from pymongo import MongoClient
 from api.api_controller import APIController
+
+
+from models.model1 import Model1, ModelReferenced1;
 
 
 class Run:
@@ -16,8 +18,6 @@ class Run:
 
         # DB
         connect('template_db')
-        DB_CLIENT = MongoClient('localhost', 27017)
-        DB_CLIENT['template_db']
 
         # API
         self.APP = Flask(__name__)
