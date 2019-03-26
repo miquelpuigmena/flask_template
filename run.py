@@ -4,9 +4,6 @@ from mongoengine import connect
 from api.api_controller import APIController
 
 
-from models.model1 import Model1, ModelReferenced1;
-
-
 class Run:
     def __init__(self):
         self.CONFIG = configparser.RawConfigParser()
@@ -17,12 +14,16 @@ class Run:
         self.PORT = int(self.CONFIG.get('flask', 'port'))
 
         # DB
-        connect('template_db')
+        connect(
+            self.CONFIG.get('db', 'name'),
+            host=self.CONFIG.get('db', 'host'),
+            port=self.CONFIG.getint('db', 'port')
+        )
 
         # API
         self.APP = Flask(__name__)
         self.APP.secret_key = self.CONFIG.get('flask', 'secret')
-        self.APP.config['DEBUG'] = (self.CONFIG.get('flask', 'debug') == "True")
+        self.APP.config['DEBUG'] = self.CONFIG.getboolean('flask', 'debug')
         APIController(self.APP).register_blueprints()
 
     def run_app(self):
