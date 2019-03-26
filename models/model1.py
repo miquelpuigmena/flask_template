@@ -9,7 +9,6 @@ class ModelReferenced1(Document):
     ref_param1 = StringField(required=True)
     ref_param2 = StringField(default="Referenced second param")
 
-
 class Model1(Document):
     """
     Class represtenting the model1
@@ -17,7 +16,7 @@ class Model1(Document):
     param1 = ReferenceField(ModelReferenced1, required=True)
     param2 = StringField(required=False)
     model1_id = StringField(required=True)
-    status = IntField(required=True, default=0)
+    status = IntField(required=False, default=0)
     date = DateTimeField()
 
 
