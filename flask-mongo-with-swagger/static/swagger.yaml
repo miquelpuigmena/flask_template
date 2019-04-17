@@ -1,0 +1,181 @@
+swagger: "2.0"
+info:
+  description: "This is a simpler flask-mongodb-swagger boilerplate.  You can find out more about Swagger at [http://swagger.io](http://swagger.io)."
+  version: "0.0.1"
+  title: "FLASK-MONGO-SWAGGER"
+  contact:
+    email: "miquelpuigmena@gmail.com"
+
+tags:
+  - name: bp1
+    description: "Description of bp1"
+    externalDocs:
+      description: "Find out more"
+      url: "http://bp1.com"
+  - name: bp2
+    description: "Description of bp2"
+    externalDocs:
+      description: "Find out more"
+      url: "http://bp2.com"
+
+schemes:
+  - "http"
+
+paths:
+
+  /bp1:
+    post:
+      tags:
+        - bp1
+      summary: Post on bp1
+      description: Generate and create dummy ModelReferenced1
+      operationId: postbp1
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: "object"
+            properties:
+              dummy-field:
+                type: string
+            example:
+              dummy-field: dummy-value
+      responses:
+        202:
+          description: Post succeeded
+          schema:
+            type: "object"
+            properties:
+              dummy-field:
+                type: string
+              response:
+                type: string
+            example:
+              dummy-field: dummy-value
+              response: ModelReferenced1 successfully stored
+        400:
+          description: Bad request
+  /bp1/{id}:
+    get:
+      tags:
+        - bp1
+      summary: Get on bp1
+      description: Get on bp1
+      operationId: getbp1
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+      produces:
+        - "plain/text"
+      responses:
+        202:
+          description: Request succeeded
+        500:
+          description: Internal server error
+  /bp2:
+    post:
+      tags:
+        - bp2
+      summary: Post on bp2
+      description: Dummy post on bp2
+      operationId: postbp2
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: "object"
+            properties:
+              dummy-field:
+                type: string
+            example:
+              dummy-field: dummy-value
+      responses:
+        202:
+          description: Post succeeded
+          schema:
+            type: "object"
+            properties:
+              dummy-field:
+                type: string
+              response:
+                type: string
+            example:
+              dummy-field: dummy-value
+              response: POST Inside bp2
+        400:
+          description: Bad request
+  /bp2/{id}:
+    get:
+      tags:
+        - bp2
+      summary: Get on bp2
+      description: Get on bp2
+      operationId: getbp2
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+      produces:
+        - "plain/text"
+      responses:
+        202:
+          description: Request succeeded
+        500:
+          description: Internal server error
+
+definitions:
+  ModelReferenced1:
+    type: "object"
+    properties:
+      ref_param1:
+        type: "string"
+      ref_param2:
+        type: "string"
+        default: "Referenced second param"
+    required:
+      - ref_param1
+    xml:
+      name: "ModelReferenced1"
+  Model1:
+    type: "object"
+    properties:
+      param1:
+        $ref: '#/definitions/ModelReferenced1'
+      param2:
+        type: "string"
+      model1_id:
+        type: "string"
+      status:
+        type: "integer"
+        default: 0
+      date:
+        type: "string"
+        format: "date-time"
+    required:
+      - param1
+      - model1_id
+    xml:
+      name: "Model1"
+  Model2:
+    type: "object"
+    properties:
+      model1:
+        $ref: '#/definitions/Model1'
+      param:
+        type: "string"
+      model2_id:
+        type: "string"
+    required:
+      - model1
+      - model2_id
+    xml:
+      name: "Model2"
