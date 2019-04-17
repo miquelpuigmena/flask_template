@@ -15,7 +15,7 @@ class Route2(Resource):
 
         :return: String
         """
-        return "GET Inside blueprint2 - " + str(id)
+        return "GET Inside route2 - " + str(id)
 
     def post(self):
         """
@@ -27,7 +27,7 @@ class Route2(Resource):
             """
         try:
             body = request.get_json(force=True)
-            body["response"] = "POST Inside blueprint2"
+            body["response"] = "POST Inside route2"
             return json.dumps(body), HTTPStatus.ACCEPTED
         except Exception as ex:
             abort(HTTPStatus.INTERNAL_SERVER_ERROR, str(ex))

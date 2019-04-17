@@ -3,10 +3,9 @@ from http import HTTPStatus
 from flask import Blueprint, request, abort
 from flask_restful import Resource
 from logger.logger import LoggerHelper
-from models.model1 import ModelReferenced1
 
 
-class Route1(Resource):
+class Route2(Resource):
 
     LOGGER = LoggerHelper.get_logger(name=__name__, filename=__name__ + ".log")
 
@@ -14,21 +13,21 @@ class Route1(Resource):
         """
         GET method
 
-        :return:
+        :return: String
         """
-        ModelReferenced1(ref_param1="uno", ref_param2="dos").save()
-        return "GET Inside route1 - " + str(id)
+        return "GET Inside route2 - " + str(id)
 
     def post(self):
         """
-        POST method
+            POST method
 
-        :return:
-        :raises:
-        """
+            :return: Json
+            :raises:
+                - HTTP
+            """
         try:
             body = request.get_json(force=True)
-            body["response"] = "POST Inside route1"
-            return json.dumps(body), 202
+            body["response"] = "POST Inside route2"
+            return json.dumps(body), HTTPStatus.ACCEPTED
         except Exception as ex:
-            abort(HTTPStatus.INTERNAL_SERVER_ERROR, str(ex))
+            abort(HTTPStatus.BAD_REQUEST, str(ex))

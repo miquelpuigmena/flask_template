@@ -1,0 +1,181 @@
+swagger: "2.0"
+info:
+  description: "This is a simpler flask-restful-mongodb-swagger boilerplate.  You can find out more about Swagger at [http://swagger.io](http://swagger.io)."
+  version: "0.0.1"
+  title: "FLASK-RESTFUL-MONGO-SWAGGER"
+  contact:
+    email: "miquelpuigmena@gmail.com"
+    
+tags:
+  - name: route1
+    description: "Description of route1"
+    externalDocs:
+      description: "Find out more"
+      url: "http://route1.com"
+  - name: route2
+    description: "Description of route2"
+    externalDocs:
+      description: "Find out more"
+      url: "http://route2.com"
+    
+schemes:
+  - "http"
+
+paths:
+
+  /route1:
+    post:
+      tags:
+        - route1
+      summary: Post on route1
+      description: Generate and create dummy ModelReferenced1
+      operationId: postRoute1
+      consumes: 
+        - application/json
+      parameters: 
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: "object"
+            properties:
+              dummy-field:
+                type: string
+            example: 
+              dummy-field: dummy-value
+      responses:
+        202:
+          description: Post succeeded
+          schema:
+            type: "object"
+            properties:
+              dummy-field:
+                type: string
+              response:
+                type: string
+            example: 
+              dummy-field: dummy-value
+              response: ModelReferenced1 successfully stored
+        400:
+          description: Bad request
+  /route1/{id}:
+    get:
+      tags: 
+        - route1
+      summary: Get on route1
+      description: Get on route1
+      operationId: getRoute1
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+      produces:
+        - "plain/text"
+      responses:
+        202:
+          description: Request succeeded
+        500:
+          description: Internal server error
+  /route2:
+    post:
+      tags:
+        - route2
+      summary: Post on route2
+      description: Dummy post on route2
+      operationId: postRoute2
+      consumes: 
+        - application/json
+      parameters: 
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: "object"
+            properties:
+              dummy-field:
+                type: string
+            example: 
+              dummy-field: dummy-value
+      responses:
+        202:
+          description: Post succeeded
+          schema:
+            type: "object"
+            properties:
+              dummy-field:
+                type: string
+              response:
+                type: string
+            example: 
+              dummy-field: dummy-value
+              response: POST Inside route2
+        400:
+          description: Bad request
+  /route2/{id}:
+    get:
+      tags: 
+        - route2
+      summary: Get on route2
+      description: Get on route2
+      operationId: getRoute2
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+      produces:
+        - "plain/text"
+      responses:
+        202:
+          description: Request succeeded
+        500:
+          description: Internal server error
+
+definitions:
+  ModelReferenced1:
+    type: "object"
+    properties:
+      ref_param1:
+        type: "string"
+      ref_param2:
+        type: "string"
+        default: "Referenced second param"
+    required: 
+      - ref_param1
+    xml:
+      name: "ModelReferenced1"
+  Model1:
+    type: "object"
+    properties:
+      param1:
+        $ref: '#/definitions/ModelReferenced1'
+      param2:
+        type: "string"
+      model1_id:
+        type: "string"
+      status:
+        type: "integer"
+        default: 0
+      date:
+        type: "string"
+        format: "date-time"
+    required:
+      - param1
+      - model1_id
+    xml:
+      name: "Model1"
+  Model2:
+    type: "object"
+    properties:
+      model1:
+        $ref: '#/definitions/Model1'
+      param:
+        type: "string"
+      model2_id:
+        type: "string"
+    required: 
+      - model1
+      - model2_id
+    xml:
+      name: "Model2"

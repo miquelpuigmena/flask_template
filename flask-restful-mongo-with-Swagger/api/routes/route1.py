@@ -16,8 +16,10 @@ class Route1(Resource):
 
         :return:
         """
-        ModelReferenced1(ref_param1="uno", ref_param2="dos").save()
-        return "GET Inside route1 - " + str(id)
+        try:
+            return "GET Inside route1 - " + str(id), HTTPStatus.ACCEPTED
+        except Exception as ex:
+            abort(HTTPStatus.INTERNAL_SERVER_ERROR, str(ex))
 
     def post(self):
         """
@@ -28,7 +30,8 @@ class Route1(Resource):
         """
         try:
             body = request.get_json(force=True)
-            body["response"] = "POST Inside route1"
-            return json.dumps(body), 202
+            ModelReferenced1(ref_param1="uno", ref_param2="dos").save()
+            body["response"] = "ModelReferenced1 successfully stored"
+            return json.dumps(body), HTTPStatus.ACCEPTED
         except Exception as ex:
-            abort(HTTPStatus.INTERNAL_SERVER_ERROR, str(ex))
+            abort(HTTPStatus.BAD_REQUEST, str(ex))
