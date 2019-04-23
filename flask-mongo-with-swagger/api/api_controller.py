@@ -4,7 +4,6 @@ from api.blueprints.bp1 import bp1
 from api.blueprints.bp2 import bp2
 
 
-
 class APIController:
 
     def __init__(self, app):

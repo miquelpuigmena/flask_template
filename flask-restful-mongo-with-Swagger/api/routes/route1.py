@@ -7,7 +7,6 @@ from models.model1 import ModelReferenced1
 
 
 class Route1(Resource):
-
     LOGGER = LoggerHelper.get_logger(name=__name__, filename=__name__ + ".log")
 
     def get(self, id='No param provided'):
@@ -35,3 +34,4 @@ class Route1(Resource):
             return json.dumps(body), HTTPStatus.ACCEPTED
         except Exception as ex:
             abort(HTTPStatus.BAD_REQUEST, str(ex))
+
