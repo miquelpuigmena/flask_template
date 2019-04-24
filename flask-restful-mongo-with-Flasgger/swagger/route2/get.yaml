@@ -1,0 +1,22 @@
+Get a nice string dependant on id.
+Retrieve: GET Inside route1 - {id}.
+Parse id param and form phrase.
+If not id provided, by default id='No param provided'.
+---
+tags:
+  - Route2
+get:
+  summary: "GET on route2"
+  description: "Gets string formed with id passed"
+  parameters:
+    - in: path
+      name: id
+      type: string
+      required: false
+  produces:
+    - "plain/text"
+  responses:
+    202:
+      description: Request succeeded
+    400:
+      description: Internal server error

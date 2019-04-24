@@ -1,0 +1,36 @@
+Creates a new BasicModel1 and saves it!
+Query contains a Json object.
+Dummy post to create a simple model and storing in DB.
+Query must include a json data which will be returned in response with a 'response'
+field added or overwritten.
+---
+tags:
+  - Route1
+consumes:
+  - application/json
+parameters:
+  - in: body
+    name: dummy_json
+    required: true
+    schema:
+      type: "object"
+      properties:
+        dummy-field:
+          type: string
+        example:
+          dummy-field: dummy-value
+responses:
+  202:
+    description: Post succeeded
+    schema:
+      type: "object"
+      properties:
+        dummy-field:
+          type: string
+    response:
+      type: string
+      example:
+        dummy-field: dummy-value
+        response: ModelReferenced1 successfully stored
+  400:
+    description: Bad request

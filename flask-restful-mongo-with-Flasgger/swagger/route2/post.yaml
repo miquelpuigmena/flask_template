@@ -1,0 +1,35 @@
+Route2 POST Title
+Route2 POST Description
+---
+tags:
+  - Route2
+summary: "POST on route2"
+description: "Triggers overwritting of json body."
+consumes:
+  - application/json
+parameters:
+  - in: body
+    name: dummy_json
+    required: true
+    schema:
+      type: "object"
+      properties:
+        dummy-fieldytt:
+          type: string
+        example:
+          dummy-fieldytt: dummy-valuesw
+responses:
+  202:
+    description: Post succeeded
+    schema:
+      type: "object"
+      properties:
+        dummy-field:
+          type: string
+    response:
+      type: string
+      example:
+        dummy-field: dummy-value
+        response: POST Inside route2
+  400:
+    description: Bad request
